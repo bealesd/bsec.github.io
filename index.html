@@ -1,1 +1,743 @@
-s
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@bealesd 
+0
+0 0 bealesd/bsec.github.io
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+bsec.github.io/bsec.html
+@bealesd bealesd Initial bsec website push, a single html file with cool navbar and la…
+523cb9c 20 hours ago
+803 lines (681 sloc)  52.1 KB
+    
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BSEC</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+        #mainTitleDiv {
+            background-color: white;
+            background: url("main.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        #mainTitle {
+            font-family: "Avenir-Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0px;
+            font-size: 80px;
+            line-height: 40px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        #eventDiv {
+            padding: 100px 0px 100px 0px;
+            background-color: white;
+        }
+        #eventDiv h2 {
+            color: darkgrey;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial;
+            text-align: center;
+            font-size: 46px;
+            line-height: 32px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        #servicesDiv {
+            padding: 100px 0px 100px 0px;
+            background-color: darkgrey;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial;
+        }
+        #servicesHeaderDiv h3 {
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 300;
+            padding-bottom: 20px;
+        }
+        #whiteButton:hover {
+            background-color: rgba(233, 220, 220, 0.945);
+            color: darkgray;
+            transition: all 0.7s ease-in;
+        }
+        .whiteButton {
+            transition: all 1s ease-out;
+        }
+        .whiteButton {
+            display: inline-block;
+            padding: 5px 0px 5px 0px;
+            color: white;
+            border: solid 2px;
+            text-decoration: none;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial !important;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 28px !important;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 10px 0px 10px 0px;
+            min-width: 200px;
+        }
+        #adultsServicesModal {
+            position: fixed;
+            opacity: 50;
+            z-index: 950;
+            transition: all 0.4s ease;
+            padding: 10px 0px 40px 0px;
+            text-align: center;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial;
+        }
+        .blurredDiv {
+            pointer-events: none;
+            -webkit-filter: blur(5px) grayscale(50%);
+            -webkit-transform: scale(0.9);
+        }
+        #adultsServicesTable {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        #adultsServicesTable td {
+            color: #7d7d7d;
+            text-align: center;
+            padding: 10px 20px 10px 20px;
+            font-size: 15px;
+            line-height: 26px;
+        }
+        #adultsServicesTable th {
+            color: white;
+            text-align: center;
+            padding: 10px 0px 10px 0px;
+        }
+        #adultsServicesTable th {
+            background-color: rgb(46, 73, 204);
+        }
+        #adultsServicesTable tr:first-child th:first-child {
+            border-top-left-radius: 6px;
+        }
+        #adultsServicesTable tr:first-child th:last-child {
+            border-top-right-radius: 6px;
+        }
+        #adultsServicesTable tr:last-child td:first-child {
+            border-bottom-left-radius: 6px;
+        }
+        #adultsServicesTable tr:last-child td:last-child {
+            border-bottom-right-radius: 6px;
+        }
+        #adultsServicesTable tr:nth-child(n+2):nth-child(odd) {
+            background-color: rgb(226, 244, 247);
+        }
+        #adultsServicesTable tr:nth-child(n+2):nth-child(even) {
+            background-color: rgb(242, 249, 250);
+        }
+        #closeAdultServicesModal {
+            padding: 2px 4px 2px 4px;
+            font-size: 30px;
+            float: right;
+        }
+        #ps1DescDiv {
+            text-align: center;
+            padding: 100px 15% 100px 15%;
+        }
+        #linkDiv {
+            background-color: darkgrey;
+            padding: 100px 0px 100px 0px;
+        }
+        #link {
+            background-color: white;
+            padding: 5px 10px 5px 10px;
+            border-radius: 25px;
+            color: black;
+            text-decoration: none;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial !important;
+            font-size: 18px !important;
+        }
+        #link:hover {
+            transition: all 0.5s ease;
+            background-color: rgba(233, 220, 220, 0.945);
+        }
+        #link:visited {
+            text-decoration: none;
+            outline: none;
+        }
+        #ps1DescDiv {
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial !important;
+            font-size: 18px !important;
+            line-height: 28px !important;
+        }
+        #ourVisionDiv{
+            text-align: center;
+            padding: 100px 0px 100px 0px;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial !important;
+            font-size: 40px !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        #whoWeAreDiv{
+            text-align: center;
+            padding: 100px 10px 100px 10px;
+            font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial !important;
+            font-size: 24px !important;
+            font-weight: 300;
+            letter-spacing: 1px;
+            background-color: black;
+            color: white;
+        }
+        /* ==== navbar ==== */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(51, 51, 51, 1);
+            color: #ccc;
+            text-decoration: none;
+        }
+        #menu>li {
+            z-index: 1000;
+            display: inline-block;
+            padding: 4px 00px 6px 00px;
+            list-style-type: none;
+            margin-left: -4px;
+            text-decoration: none;
+        }
+        .subMenuLinkHidden {
+            display: none;
+        }
+        .subMenuLinkShown {
+            z-index: 888;
+            top: 30px;
+            position: absolute;
+            display: inline-block;
+            border: solid 1px #ccc;
+        }
+        .subMenuChildLinkHidden {
+            display: none;
+        }
+        .subMenuChildLinkShown {
+            min-width: 100%;
+            z-index: 887;
+            position: relative;
+            display: inline-block;
+            background-color: transparent;
+            border-top: solid #ccc 1px;
+            border-bottom: solid #ccc 1px;
+        }
+        .subMenuChildLinkShown>ul {
+            background-color: transparent;
+        }
+        a:hover,
+        a:visited,
+        a:link,
+        a:active {
+            text-decoration: none;
+        }
+        .menuLink {
+            color: #ccc;
+            padding: 0px 10px 0px 10px;
+            font: 12px Arial, sans-serif;
+        }
+        .menuLinkHolder {
+            padding: 0px 8px 0px 8px;
+        }
+        .subMenuLink {
+            background-color: white;
+            padding: 5px 0px 5px 0px;
+        }
+        .subMenuLink:hover {
+            background-color: #e4ebf8;
+        }
+        .subMenuLink>a {
+            color: #2d2d2d;
+            padding: 0px 8px 0px 8px;
+            font: 12px Arial, sans-serif;
+        }
+        .childSubMenuLink {
+            color: #2d2d2d;
+            font: 12px Arial, sans-serif;
+        }
+        .menuLinkRight {
+            float: right;
+            padding-right: 10px;
+        }
+        .sticky {
+            background-color: rgba(51, 51, 51, 1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .glyph {
+            float: right;
+            padding: 4px 4px 0px 0px;
+            color: gray;
+            transform: scaleX(0.8);
+        }
+        .firstMenuLink {
+            border-right: solid transparent 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sticky">
+        <ul id="menu">
+            <li>
+                <a class="menuLinkHolder"></a>
+            </li>
+
+            <li>
+                <a class="menuLink" id='home'>BSEC</a>
+            </li>
+
+            <li>
+                <a class="menuLink">Welcome</a>
+                <ul class="subMenuLinkHidden">
+                    <li  class="subMenuLink"><a id="ourVision">Our Vision</a></li>
+                    <li   class="subMenuLink"><a id="whoWeAre">Who We Are</a></li>
+                </ul>
+            </li>
+
+            <!--#region 'Whats On' Sub Menu Link  -->
+            <li>
+                <a class="menuLink" id='table'>Whats On</a>
+                <ul class="subMenuLinkHidden">
+                    <li class="subMenuLink"><a id="events">Events</a></li>
+
+                    <li class="subMenuLink">
+                        <a id="thisWeek">This Week
+                            <span class="subMenuLinkExpand glyph glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </li>
+                    <div class="subMenuChildLinkHidden">
+                        <ul>
+                            <li><a class="childSubMenuLink" id="kids">&nbsp; Kids</a></li>
+                        </ul>
+                        <ul>
+                            <li><a class="childSubMenuLink" id="adults">&nbsp; Adults</a></li>
+                        </ul>
+                    </div>
+
+                    <li class="subMenuLink"><a>Weekly Programme</a></li>
+                </ul>
+            </li>
+            <!--#endregion -->
+
+            <li>
+                <a class="menuLink" id='about'>Find Us</a>
+                <ul class="subMenuLinkHidden">
+                    <li class="subMenuLink"><a>Our Location</a></li>
+                    <li class="subMenuLink"><a>Contact Information</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="menuLink" id='about'>Extra</a>
+                <ul class="subMenuLinkHidden">
+                    <li class="subMenuLink"><a id="subscribe">Subscribe</a></li>
+                    <li class="subMenuLink"><a>Audio Archive</a></li>
+                </ul>
+            </li>
+
+
+
+        </ul>
+    </div>
+
+    <div id="main">
+
+        <div id="mainTitleDiv">
+            <h1 id="mainTitle">
+                bsec
+            </h1>
+        </div>
+
+        <div id="ourVisionDiv">
+            TOGETHER WE WANT TO KNOW GOD AND MAKE HIM KNOWN..
+        </div>
+
+        <div id="whoWeAreDiv">
+            We are a gathering of Bible-believing Christians. We seek to follow Jesus in obedience to God’s word through the power of the Holy Spirit.
+            We are committed to the following truths of historic biblical faith.
+        </div>
+
+        <div id="eventDiv">
+            <h2>Events</h2>
+            <p>Carousel</p>
+        </div>
+
+        <div id="servicesDiv">
+            <div id="servicesHeaderDiv">
+                <h3>This Week</h3>
+            </div>
+            <div>
+                <a id="homeGroup" class="whiteButton">
+                    &nbsp;Home Group
+                </a>
+            </div>
+            <div>
+                <a id="preSchool" class="whiteButton">
+                    &nbsp;Pre School
+                </a>
+            </div>
+            <div>
+                <a id="services" class="whiteButton">
+                    &nbsp;Services
+                </a>
+            </div>
+
+            <div>
+                <a id="youthClub" class="whiteButton">
+                    &nbsp;Youth Club
+                </a>
+            </div>
+
+        </div>
+
+        <div id="ps1DescDiv">
+            <p>
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+                Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text. Filler Text.
+            </p>
+        </div>
+
+        <div id="linkDiv">
+            <a id="link">
+                &nbsp; Subscribe On iTunes
+            </a>
+        </div>
+    </div>
+
+
+    <div hidden id="adultsServicesModal">
+
+        <div id="closeAdultServicesModalDiv">
+            <a>&nbsp;</a>
+            <a id="closeAdultServicesModal">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+
+        <table id="adultsServicesTable">
+            <tr>
+                <th colspan="5">Sundays | 10:30am – 11:45am | 4.00 – 5.30pm</th>
+            </tr>
+            <tr>
+                <th><span class="glyphicon glyphicon-pencil"></span></th>
+                <th><span class="glyphicon glyphicon-book"></span></th>
+                <th><span class="glyphicon glyphicon-user"></span></th>
+                <th><span class="glyphicon glyphicon-calendar"></span></th>
+                <!-- <th></th> -->
+            </tr>
+            <tr>
+                <td>Grace Upon Grace</td>
+                <td>John</td>
+                <td>Alan Sully</td>
+                <td>24 Mar 2019</td>
+                <!-- <td><span class="glyphicon  glyphicon-download-alt"></span></td> -->
+            </tr>
+            <tr>
+                <td>The Lord’s Prayer</td>
+                <td>Matthew</td>
+                <td>Tim Sunderland</td>
+                <td>17 Mar 2019</td>
+                <!-- <td><span class="glyphicon  glyphicon-download-alt"></span></td> -->
+            </tr>
+            <tr>
+                <td>Grace Upon Grace</td>
+                <td>John</td>
+                <td>Alan Sully</td>
+                <td>24 Mar 2019</td>
+                <!-- <td><span class="glyphicon  glyphicon-download-alt"></span></td> -->
+            </tr>
+            <tr>
+                <td>The Lord’s Prayer</td>
+                <td>Matthew</td>
+                <td>Tim Sunderland</td>
+                <td>17 Mar 2019</td>
+                <!-- <td><span class="glyphicon  glyphicon-download-alt"></span></td> -->
+            </tr>
+        </table>
+    </div>
+
+</body>
+<script>
+    const largestLinkWidth = 140;
+    const navBarHeight = 44.2;
+    const navBarRightSmallLinkHeight = 49;
+    window.addEventListener("load", function () {
+        positionServices();
+        positionLink();
+        navBarLinksSetup();
+        setSubScribeLink();
+        loadAdultServices();
+        closeAdultServicesModal();
+        setMainTitleDivHeight();
+    }.bind(this));
+    window.onscroll = function () {
+        positionAdultsTable();
+    };
+    window.addEventListener("resize", resizeThrottler, false);
+    function resizeThrottler() {
+        let resizeTimeout;
+        if (!resizeTimeout) {
+            resizeTimeout = setTimeout(function () {
+                resizeTimeout = null;
+                positionServices();
+                positionLink();
+                setMainTitleDivHeight();
+            }, 66);
+        }
+    }
+    function setSubScribeLink() {
+        document.getElementById('link').addEventListener('click', (event) => {
+            event.preventDefault();
+            window.open('https://www.google.co.uk');
+        }, false);
+    }
+    function onHomeClick() {
+        document.querySelector('#home').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'home') {
+                clearMenu();
+                document.getElementById('mainTitleDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    function onThisWeekClick() {
+        document.querySelector('#thisWeek').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'thisWeek') {
+                clearMenu();
+                document.getElementById('servicesDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    function onEventsClick() {
+        document.querySelector('#events').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'events') {
+                clearMenu();
+                document.getElementById('eventDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    function onAdultClick() {
+        document.querySelector('#adult').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'events') {
+                clearMenu();
+                document.getElementById('eventDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    function onSubscribeClick() {
+        document.querySelector('#subscribe').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'subscribe') {
+                clearMenu();
+                document.getElementById('linkDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    function onOurVisionClick() {
+        document.querySelector('#ourVision').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'ourVision') {
+                clearMenu();
+                document.getElementById('ourVisionDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    function onWhoWeAreClick() {
+        document.querySelector('#whoWeAre').addEventListener('click', function (event) {
+            if (event.srcElement.id === 'whoWeAre') {
+                clearMenu();
+                document.getElementById('whoWeAreDiv').scrollIntoView();
+            }
+        }.bind(this));
+    }
+    //whoAreWeDiv
+    function navBarLinksSetup() {
+        addNavBarHoverEvents();
+        addNavbarHoverColors();
+        onHomeClick();
+        onThisWeekClick();
+        onEventsClick();
+        onSubscribeClick();
+        onOurVisionClick();
+        onWhoWeAreClick();
+    }
+    function addNavBarHoverEvents() {
+        exapndSubMenuEvent();
+        expandSubMenuLinkChildMenuEvent();
+    }
+    function exapndSubMenuEvent() {
+        document.querySelectorAll('#menu > li').forEach(function (topMenuLink) {
+            topMenuLink.addEventListener('click', function (event) {
+                // check event source
+                let isMenuLink = event.srcElement.classList.contains('menuLink');
+                if (isMenuLink === false) {
+                    return;
+                }
+                if (topMenuLink.getElementsByTagName('ul').length && topMenuLink.getElementsByTagName('ul')[0].classList.contains('subMenuLinkHidden')) {
+                    clearMenu();
+                    // show sub menu if it exists
+                    topMenuLink.getElementsByTagName('ul')[0].classList.remove('subMenuLinkHidden');
+                    topMenuLink.getElementsByTagName('ul')[0].classList.add('subMenuLinkShown');
+                    topMenuLink.classList.add('activeMenuLink');
+                    topMenuLink.style.backgroundColor = 'white';
+                    topMenuLink.children[0].style.color = 'black';
+                }
+                else if (topMenuLink.getElementsByTagName('ul').length) {
+                    clearMenu();
+                }
+            });
+        });
+    }
+    function clearMenu() {
+        document.querySelectorAll('.activeMenuLink').forEach(function (activeLink) {
+            activeLink.classList.remove('activeMenuLink');
+            activeLink.getElementsByTagName('ul')[0].classList.remove('subMenuLinkShown');
+            activeLink.getElementsByTagName('ul')[0].classList.add('subMenuLinkHidden');
+            activeLink.style.backgroundColor = '';
+            activeLink.children[0].style.color = '';
+        });
+    }
+    function expandSubMenuLinkChildMenuEvent() {
+        document.querySelectorAll('.subMenuLinkExpand').forEach(function (subMenuLink) {
+            subMenuLink.addEventListener('click', function (event) {
+                // check event source
+                if (!event.srcElement.classList.contains('subMenuLinkExpand')) {
+                    return;
+                }
+                if (subMenuLink.parentNode.parentNode.nextElementSibling.classList.contains('subMenuChildLinkHidden')) {
+                    subMenuLink.parentNode.parentNode.nextElementSibling.classList.remove('subMenuChildLinkHidden');
+                    subMenuLink.parentNode.parentNode.nextElementSibling.classList.add('subMenuChildLinkShown');
+                    subMenuLink.classList.remove('glyphicon-chevron-right');
+                    subMenuLink.classList.add('glyphicon-chevron-down');
+                    event.preventDefault();
+                }
+                else {
+                    subMenuLink.parentNode.parentNode.nextElementSibling.classList.add('subMenuChildLinkHidden');
+                    subMenuLink.parentNode.parentNode.nextElementSibling.classList.remove('subMenuChildLinkShown');
+                    subMenuLink.classList.add('glyphicon-chevron-right');
+                    subMenuLink.classList.remove('glyphicon-chevron-down');
+                }
+            });
+        });
+    }
+    function addNavbarHoverColors() {
+        document.querySelectorAll('.menuLink').forEach(function (link) {
+            link.addEventListener('mouseover', function () {
+                link.parentNode.style.backgroundColor = "white";
+                link.style.color = "black";
+            }.bind(this), false);
+            link.addEventListener('mouseout', function () {
+                if (!link.parentNode.classList.contains('activeMenuLink')) {
+                    link.parentNode.style.backgroundColor = "";
+                    link.style.color = "";
+                }
+            }.bind(this), false);
+        })
+        document.querySelectorAll('.subMenuChildLinkHidden > ul').forEach(function (link) {
+            link.style.backgroundColor = 'white';
+            link.addEventListener('mouseover', function () {
+                link.style.backgroundColor = "#e4ebf8";
+                link.querySelectorAll('a')[0].style.color = 'black';
+            }.bind(this), false);
+            link.addEventListener('mouseout', function () {
+                link.style.backgroundColor = 'white';
+                link.querySelectorAll('a')[0].style.color = 'black';
+            }.bind(this), false);
+        })
+    }
+    function setMainTitleDivHeight() {
+        document.getElementById('mainTitleDiv').style.minHeight = `${window.innerHeight}px`;
+        let mainTitleElem = document.getElementById('mainTitle');
+        let windowHeight = window.innerHeight;
+        mainTitleElem.style.top = 0
+        let mainTitleHeight = mainTitleElem.offsetHeight;
+        mainTitleElem.style.paddingTop = `${(windowHeight - mainTitleHeight) / 2}px`;
+    }
+    function disableMainPage() {
+        document.querySelector('#main').classList.add('blurredDiv');
+    }
+    function closeAdultServicesModal() {
+        document.getElementById('closeAdultServicesModal').addEventListener('click', () => {
+            document.getElementById('adultsServicesModal').hidden = true;
+            document.getElementById('main').classList.remove('blurredDiv');
+        }, false);
+    }
+    function loadAdultServices() {
+        let adultServicesElem = document.getElementById('adults');
+        adultServicesElem.addEventListener('click', function (event) {
+            document.getElementById('adultsServicesModal').hidden = false;
+            disableMainPage();
+            positionAdultsTable();
+        }.bind(this), false);
+    }
+    function positionServices() {
+        let adultServicesElem = document.querySelectorAll(".whiteButton").forEach(function (button) {
+            let windowWidth = window.innerWidth;
+            let buttonWidth = button.offsetWidth;
+            let gutter = (windowWidth - buttonWidth) / 2;
+            button.style.marginLeft = `${gutter}px`;
+        });
+    }
+    function positionAdultsTable() {
+        let tableOneElem = document.getElementById('adultsServicesModal');
+        let windowWidth = window.innerWidth;
+        tableOneElem.style.left = 0
+        let tableOneWidth = tableOneElem.offsetWidth;
+        tableOneElem.style.left = `${(windowWidth - tableOneWidth) / 2}px`;
+        let windowHeight = window.innerHeight;
+        tableOneElem.style.top = 0
+        let tableOneHeight = tableOneElem.offsetHeight;
+        tableOneElem.style.top = `${(windowHeight - tableOneHeight) / 2}px`;
+    }
+    function positionLink() {
+        let link = document.getElementById('link');
+        let windowWidth = window.innerWidth;
+        let linkWidth = link.offsetWidth;
+        let gutter = (windowWidth - linkWidth) / 2;
+        link.style.marginLeft = `${gutter}px`;
+    }
+</script>
+
+</html>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
